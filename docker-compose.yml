@@ -1,0 +1,50 @@
+version: "3.1"
+services:
+    votes:
+        container_name: votes_application
+        build: .
+        ports: 
+            - "9591:80"
+        environment:
+            MYSQL_HOST: votes_db
+            MYSQL_DB: votes
+            MYSQL_USER: votes_user
+            MYSQL_PASSWORD: 123456
+            AUTH_HOST: http://192.168.56.102
+            AUTH_PORT: 5061
+            AUTH_CLIENT_ID: client
+            AUTH_CLIENT_SECRET: 123456
+        volumes:
+            - ./src:/var/www/html/
+        links:
+            - docker-db
+        networks:
+            - default
+    docker-db:
+        container_name: votes_db
+        image: mysql:8.0
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            MYSQL_DATABASE: votes
+            MYSQL_USER: votes_user
+            MYSQL_PASSWORD: 123456
+            MYSQL_ROOT_PASSWORD: 123456
+        volumes:
+            - ./dump:/docker-entrypoint-initdb.d
+            - persistent:/var/lib/mysql
+        networks:
+            - default
+    docker-phpmyadmin:
+        container_name: votes_phpmyadmin
+        image: phpmyadmin/phpmyadmin
+        links: 
+            - docker-db
+        ports:
+            - 9592:80
+        environment:
+            PMA_HOST: votes_db
+            MYSQL_USER: votes
+            MYSQL_PASSWORD: 123456
+            MYSQL_ROOT_PASSWORD: 123456
+volumes:
+    persistent:

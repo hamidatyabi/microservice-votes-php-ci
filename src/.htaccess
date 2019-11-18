@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond $1 !^(assets|uploads|admin)
+RewriteRule ^ index.php [QSA,L]
+
+<IfModule mod_env.c>
+    SetEnv CI_ENV production
+</IfModule>
