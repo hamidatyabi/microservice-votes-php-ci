@@ -8,6 +8,7 @@ class REST_Controller extends CI_Controller{
     private $tokenInfo;
     public function __construct() {
         parent::__construct();
+        
         $this->config->load('oauth2');
         $config = array(
             "oauth2_host" => $this->config->item('oauth2_host'),

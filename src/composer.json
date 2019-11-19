@@ -12,7 +12,8 @@
 	},
 	"require": {
 		"php": ">=5.3.7",
-		"hamidatyabi/auth2": "1.0.2"
+		"hamidatyabi/auth2": "1.0.2",
+                "hamidatyabi/image-library": "1.0.0"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"

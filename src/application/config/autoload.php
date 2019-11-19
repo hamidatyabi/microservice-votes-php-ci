@@ -62,7 +62,10 @@ $autoload['libraries'] = array('database',
     'Entities/Vote', 
     'Entities/VoteOptions', 
     'Models/Request/VoteListRequest',
-    'Models/Response/VoteListResponse');
+    'Models/Response/VoteListResponse',
+    'Models/Request/VoteAddRequest',
+    'Models/Response/ErrorResponse'
+);
 
 /*
 | -------------------------------------------------------------------

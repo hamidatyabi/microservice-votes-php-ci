@@ -1,5 +1,5 @@
 <?php
-
+use HamidAtyabi\ImageLibrary\Entities\Image;
 class Vote implements JsonSerializable{
     private $id;
     private $title;
@@ -8,9 +8,10 @@ class Vote implements JsonSerializable{
     private $expireTime;
     private $status;
     private $options;
+    private $media;
             
     function __construct($id = 0, $title = '', $description = '', $createTime = '', 
-            $expireTime = '', $status = false, $options = null) {
+            $expireTime = '', $status = false, $options = null, Image $media = null) {
         $this->id = $id;
         $this->title = $title;
         $this->description = $description;
@@ -18,6 +19,7 @@ class Vote implements JsonSerializable{
         $this->expireTime = $expireTime;
         $this->status = $status;
         $this->options = $options;
+        $this->media = $media;
     }
 
     
@@ -76,7 +78,17 @@ class Vote implements JsonSerializable{
     function setOptions($options) {
         $this->options = $options;
     }
+    
+    function getMedia() : Image
+    {
+        return $this->media;
+    }
 
+    function setMedia($media) {
+        $this->media = $media;
+    }
+
+    
     
     public function jsonSerialize()
     {
@@ -87,7 +99,8 @@ class Vote implements JsonSerializable{
             'createTime' => $this->createTime,
             'expireTime' => $this->expireTime,
             'status' => $this->status,
-            'options' => $this->options
+            'options' => $this->options,
+            'media' => $this->media
         ];
     }
 }

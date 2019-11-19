@@ -12,4 +12,5 @@ COPY src/ /var/www/html/
 RUN composer install
 RUN mkdir -p /var/www/html/application/logs
 RUN chmod -R 777 /var/www/html/application/logs
+RUN chmod -R 777 /var/www/html/uploads
 EXPOSE 80
